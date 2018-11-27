@@ -15,5 +15,13 @@ def contactos():
 	print(resultado)
 	
 	return jsonify(resultado)
+@app.route("/detalles/", methods=['GET'])
+def detalles():
+	id_contacto = request.args.get('id')
+	det = Contactos(conexion, cursor)
+	resultado = det.recuperar(id_contacto)
+	print(resultado)
+	
+	return jsonify(resultado)
 app.run(debug=True)
 

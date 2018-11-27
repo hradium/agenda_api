@@ -27,3 +27,20 @@ class Contactos:
 			contactos.append(contacto)
 			
 		return contactos
+	def recuperar(self,id_contacto):
+		datos = []
+		select = ("SELECT * FROM contacto WHERE id = %s")
+		self.cursor.execute(select,(id_contacto,))
+		for p in self.cursor.fetchall():
+			dato = {
+				'id': p[0],
+				'nombre': p[1],
+				'correo': p[2],
+				'telefono': p[3],
+				'facebook': p[4],
+				'twitter': p[5],
+				'instagram': p[6]
+			}
+			datos.append(dato)
+			
+		return datos
