@@ -23,5 +23,19 @@ def detalles():
 	print(resultado)
 	
 	return jsonify(resultado)
+@app.route("/agregar/", methods=['GET'])
+def login():
+	#print(request.args)
+	nombre=request.args.get('nombre')
+	correo=request.args.get('correo')
+	telefono=request.args.get('telefono')
+	facebook=request.args.get('facebook')
+	twitter=request.args.get('twitter')
+	instagram=request.args.get('instagram')
+	
+	add = Contactos(conexion,cursor)
+	respuesta=add.agregar(nombre,correo,telefono,facebook,twitter,instagram)
+	#respuesta.headers.add('Access-Control-Allow-Origin','*')
+	return jsonify(respuesta)
 app.run(debug=True)
 
